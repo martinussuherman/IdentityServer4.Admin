@@ -1,4 +1,4 @@
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -101,8 +101,6 @@ namespace Skoruba.IdentityServer4.Admin
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
-            app.UsePathBase(Configuration.GetValue<string>("BasePath"));
 
             // Add custom security headers
             app.UseSecurityHeaders();
