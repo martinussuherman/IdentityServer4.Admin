@@ -1,0 +1,33 @@
+.page-header img
+{
+    width: 420px;
+}
+
+.login-container
+{
+    background-image: url('../../images/bg-01.jpg');
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.login-container .container
+{
+    width: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 2rem;
+}
+
+@media only screen and (max-width: 600px)
+{
+    .page-header img
+    {
+        width: 94%;
+    }
+    
+    .login-container .container
+    {
+        width: auto;
+        padding: 0.5rem;
+    }
+}
