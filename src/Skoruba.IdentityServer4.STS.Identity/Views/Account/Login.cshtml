@@ -1,13 +1,18 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
 @using Skoruba.IdentityServer4.STS.Identity.Configuration.Interfaces
 @using Skoruba.IdentityServer4.STS.Identity.Helpers.Localization
 @inject IViewLocalizer Localizer
 @model Skoruba.IdentityServer4.STS.Identity.ViewModels.Account.LoginViewModel
 @inject IRootConfiguration RootConfiguration
 
-<div class="login-page">
+@{
+    Layout = "_SimyanfarLayout";
+}
+
+<div class="container">
     <div class="page-header">
-        <h1>@Localizer["Title"]</h1>
+        <img src='@Url.Content("~/images/logo-simyanfar.png")' />
+        @* <h1>@Localizer["Title"]</h1> *@
     </div>
 
     @await Html.PartialAsync("_ValidationSummary")
@@ -16,7 +21,7 @@
 
         @if (Model.EnableLocalLogin)
         {
-            <div class="col-sm-6">
+            <div class="col">
                 <div class="card mt-3">
                     <h5 class="card-header">@Localizer["LocalLogin"]</h5>
                     <div class="card-body">
@@ -85,7 +90,7 @@
 
         @if (Model.VisibleExternalProviders.Any())
         {
-            <div class="col-sm-6 external-providers">
+            <div class="col external-providers">
                 <div class="card mt-3">
                     <h5 class="card-header">@Localizer["ExternalLogin"]</h5>
                     <div class="card-body">
