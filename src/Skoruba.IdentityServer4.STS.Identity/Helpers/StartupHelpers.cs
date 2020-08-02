@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using IdentityServer4.EntityFramework.Storage;
 using Microsoft.AspNetCore.Authentication;
@@ -336,6 +336,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.Helpers
 
             builder.AddCustomSigningCredential(configuration);
             builder.AddCustomValidationKey(configuration);
+            builder.AddExtensionGrantValidator<DelegationGrantValidator>();
 
             return builder;
         }
