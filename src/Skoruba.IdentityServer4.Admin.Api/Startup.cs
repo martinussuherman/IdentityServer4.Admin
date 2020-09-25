@@ -120,6 +120,7 @@ namespace Skoruba.IdentityServer4.Admin.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UsePathBase(Configuration.GetValue<string>("BasePath"));
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
