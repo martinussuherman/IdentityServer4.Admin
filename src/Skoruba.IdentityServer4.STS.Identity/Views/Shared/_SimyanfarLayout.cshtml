@@ -30,18 +30,18 @@
     <environment include="Development">
         <link href="~/dist/css/bundle.min.css" asp-append-version="true" rel="stylesheet" />
         <link href="~/dist/css/web.css" asp-append-version="true" rel="stylesheet" />
-        <link href="~/dist/css/simyanfar.css" asp-append-version="true" rel="stylesheet" />
     </environment>
     <environment exclude="Development">
         <link href="~/dist/css/bundle.min.css" asp-append-version="true" rel="stylesheet" />
         <link href="~/dist/css/web.min.css" asp-append-version="true" rel="stylesheet" />
-        <link href="~/dist/css/simyanfar.css" asp-append-version="true" rel="stylesheet" />
     </environment>
+
+    <link href="~/dist/css/simyanfar.css" asp-append-version="true" rel="stylesheet" />
 
     @RenderSection("styles", required: false)
 </head>
 <body>
-    <div class="container-fluid p-0 login-container">
+    <div class="container-fluid p-0 bg-container">
         @RenderBody()
     </div>
 
