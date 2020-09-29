@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model Skoruba.IdentityServer4.STS.Identity.ViewModels.Account.ResendConfirmationEmailViewModel
+
+@{
+    Layout = "_SimyanfarLayout";
+    ViewData["Title"] = Localizer["Title"];
+}
+
+<div class="container center-container">
+    <div class="page-header">
+        <img src='@Url.Content("~/images/logo-simyanfar.png")' />
+    </div>
+
+
+    <div class="card mt-3 round-2em bg-white-80">
+        <div class="card-header">
+            <h2>@ViewData["Title"]</h2>
+        </div>
+
+        <div class="card-body">
+            @await Html.PartialAsync("_ValidationSummary")
+
+            <form asp-controller="Account" asp-action="ResendConfirmationEmail" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                @* <h4>@Localizer["SubTitle"]</h4> *@
+                <div class="form-group">
+                    <label asp-for="Email" class="col control-label">@Localizer["Email"]</label>
+                    <div class="col">
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block round-2em">@Localizer["Button"]</button>
+            </form>
+        </div>
+    </div>
+</div>

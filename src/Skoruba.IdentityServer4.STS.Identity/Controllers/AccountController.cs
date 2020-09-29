@@ -344,7 +344,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
             }
 
             var code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(model.Code));
-            var result = await _userManager.ResetPasswordAsync(user, code, model.Password); 
+            var result = await _userManager.ResetPasswordAsync(user, code, model.Password);
 
             if (result.Succeeded)
             {
@@ -652,6 +652,37 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
             return await Register(registerModel, returnUrl);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult DisplayResendEmailForm()
+        {
+            return View("ResendConfirmationEmail");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResendConfirmationEmail(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                return View("Login");
+            }
+
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                return View("Login");
+            }
+
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code }, HttpContext.Request.Scheme);
+
+            await _emailSender.SendEmailAsync(email, _localizer["ConfirmEmailTitle"], _localizer["ConfirmEmailBody", HtmlEncoder.Default.Encode(callbackUrl)]);
+            return View("RegisterConfirmation");
+        }
 
         /*****************************************/
         /* helper APIs for the AccountController */
