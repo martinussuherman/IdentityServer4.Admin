@@ -9,14 +9,14 @@
     Layout = "_SimyanfarLayout";
 }
 
-<div class="container">
+<div class="container center-container">
     <div class="page-header">
         <img src='@Url.Content("~/images/logo-simyanfar.png")' />
     </div>
 
     @if (Model.EnableLocalLogin)
     {
-        <div class="card mt-3">
+        <div class="card mt-3 round-2em bg-white-80">
             <div class="card-header">
                 <h2>@ViewData["Title"]</h2>
                 <h4>@Localizer["LocalLogin"]</h4>
@@ -48,6 +48,8 @@
                             </div>
                             <input type="password" class="form-control" placeholder="@Localizer["Password"]" aria-label="Password" aria-describedby="input-password" asp-for="Password" autocomplete="off">
                         </div>
+
+                        <a asp-action="ForgotPassword" asp-controller="Account" class="text-danger" value="forgot">@Localizer["Forgot"]</a>
                     </div>
 
                     @if (Model.AllowRememberLogin)
@@ -64,12 +66,12 @@
                         </div>
                     }
 
-                    <button class="btn btn-primary btn-block" name="button" value="login">@Localizer["Login"]</button>
-                    <a asp-action="ForgotPassword" asp-controller="Account" class="btn btn-info btn-block" value="forgot">@Localizer["Forgot"]</a>                                        
+                    <button class="btn btn-primary btn-block round-2em" name="button" value="login">@Localizer["Login"]</button>
 
                     @if (RootConfiguration.RegisterConfiguration.Enabled)
                     {
-                        <a asp-action="Register" asp-controller="Account" class="btn btn-dark btn-block" value="forgot">@Localizer["Register"]</a>
+                        <a asp-action="Register" asp-controller="Account" class="btn btn-dark btn-block round-2em" value="forgot">@Localizer["Register"]</a>
+                        <a asp-action="DisplayResendEmailForm" asp-controller="Account" class="btn text-primary">@Localizer["ResendConfirmation"]</a>
                     }
                 </form>
             </div>
