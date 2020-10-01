@@ -45,7 +45,10 @@
 <div class="container-fluid bg3-container">
     <div class="menu d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom box-shadow">
         <!--Site name -->
-        <h3 class="menu-logo my-0 mr-md-auto font-weight-normal"><a class="logo" asp-area="" asp-controller="Home" asp-action="Index">@RootConfiguration.AdminConfiguration.PageTitle</a></h3>
+        <h3 class="menu-logo my-0 mr-md-auto font-weight-normal">
+            <a class="logo" asp-area="" asp-controller="Home" asp-action="Index">@RootConfiguration.AdminConfiguration.PageTitle</a>
+        </h3>
+
         <!--Menu item -->
         @if (User.Identity.IsAuthenticated && !string.IsNullOrEmpty(name))
         {
@@ -70,7 +73,7 @@
                 </div>
             </div>
 
-            <a class="menu-item my-2 btn btn-outline-primary" asp-action="Logout" asp-controller="Account">@Localizer["Signout"]</a>
+            <a class="menu-item my-2 btn btn-danger" asp-action="Logout" asp-controller="Account">@Localizer["Signout"]</a>
         }
 
         <!--Menu button - show in < MD -->

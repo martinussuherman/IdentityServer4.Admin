@@ -121,7 +121,7 @@
     <value>Authenticator code</value>
   </data>
   <data name="Info" xml:space="preserve">
-    <value>Your login is protected with an authenticator app. Enter your authenticator code below.</value>
+    <value>Your login is protected with an authenticator app.</value>
   </data>
   <data name="LogIn" xml:space="preserve">
     <value>Log in</value>
