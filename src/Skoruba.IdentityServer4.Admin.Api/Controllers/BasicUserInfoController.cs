@@ -14,7 +14,7 @@ using static IdentityModel.JwtClaimTypes;
 
 namespace PsefIdentityAdmin.Admin.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     [TypeFilter(typeof(ControllerExceptionFilterAttribute))]
     [Produces("application/json", "application/problem+json")]
