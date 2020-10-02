@@ -143,6 +143,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
                 if (user != default(TUser))
                 {
                     var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberLogin, lockoutOnFailure: true);
+
                     if (result.Succeeded)
                     {
                         await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id.ToString(), user.UserName));
@@ -185,8 +186,16 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
                         return View("Lockout");
                     }
                 }
-                await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials"));
-                ModelState.AddModelError(string.Empty, AccountOptions.InvalidCredentialsErrorMessage);
+
+                if(await _signInManager.UserManager.IsEmailConfirmedAsync(user))
+                {
+                    await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials"));
+                    ModelState.AddModelError(string.Empty, AccountOptions.InvalidCredentialsErrorMessage);
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Please confirm your email first.");
+                }
             }
 
             // something went wrong, show form with error
