@@ -33,7 +33,7 @@
 
 .bg-container .center-container
 {
-    width: 500px;
+    max-width: 500px;
     border-radius: 10px;
     overflow: hidden;
     padding: 2rem;
@@ -59,6 +59,11 @@
     border-radius: 2em;
 }
 
+.max-width100
+{
+    max-width: 100%;
+}
+
 @media only screen and (max-width: 600px)
 {
     .page-header img
@@ -66,9 +71,9 @@
         width: 94%;
     }
     
-    .login-container .container
+    .bg-container .container
     {
         width: auto;
-        padding: 0.5rem;
+        padding: 1rem;
     }
 }

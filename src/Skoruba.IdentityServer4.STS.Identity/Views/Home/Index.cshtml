@@ -3,8 +3,10 @@
 @using Skoruba.IdentityServer4.STS.Identity.Configuration.Interfaces
 @inject IViewLocalizer Localizer
 @inject IRootConfiguration RootConfiguration
-<div class="welcome-block px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4"><img class="icon p-4 bg-black-40 round-2em" alt="Logo" src="@UrlHelper.Content(RootConfiguration.AdminConfiguration.HomePageLogoUri)"><br />@RootConfiguration.AdminConfiguration.PageTitle</h1>
+<div class="welcome-block px-3 py-3 pt-md-1 pb-md-1 mx-auto text-center">
+    <h1 class="display-4">
+        <img class="icon p-4 bg-black-40 round-2em max-width100" alt="Logo" src="@UrlHelper.Content(RootConfiguration.AdminConfiguration.HomePageLogoUri)">
+    </h1>
     <p class="lead">@Localizer["SubTitle", RootConfiguration.AdminConfiguration.PageTitle]</p>
 </div>
 
