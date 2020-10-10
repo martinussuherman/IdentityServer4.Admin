@@ -726,6 +726,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
                     ReturnUrl = returnUrl,
                     Username = context?.LoginHint,
                     LoginResolutionPolicy = _loginConfiguration.ResolutionPolicy,
+                    RequireConfirmedAccount = _identityOptions.SignIn.RequireConfirmedAccount,
                     ExternalProviders = new ExternalProvider[] { new ExternalProvider { AuthenticationScheme = context.IdP } }
                 };
             }

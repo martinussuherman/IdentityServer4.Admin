@@ -71,6 +71,10 @@
                     @if (RootConfiguration.RegisterConfiguration.Enabled)
                     {
                         <a asp-action="Register" asp-controller="Account" class="btn btn-dark btn-block round-2em" value="forgot">@Localizer["Register"]</a>
+                    }
+
+                    @if(Model.RequireConfirmedAccount)
+                    {
                         <a asp-action="DisplayResendEmailForm" asp-controller="Account" class="btn text-primary">@Localizer["ResendConfirmation"]</a>
                     }
                 </form>
