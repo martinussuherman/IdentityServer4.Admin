@@ -187,7 +187,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
                     }
                 }
 
-                if(await _signInManager.UserManager.IsEmailConfirmedAsync(user))
+                if(user == null || await _signInManager.UserManager.IsEmailConfirmedAsync(user))
                 {
                     await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials"));
                     ModelState.AddModelError(string.Empty, AccountOptions.InvalidCredentialsErrorMessage);
@@ -675,14 +675,15 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
         {
             if (string.IsNullOrEmpty(email))
             {
-                return View("Login");
+                return RedirectToAction(nameof(Login));
             }
 
             var user = await _userManager.FindByEmailAsync(email);
 
             if (user == null)
             {
-                return View("Login");
+                // Don't reveal that the email does not exist
+                return View("RegisterConfirmation");
             }
 
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -765,6 +766,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
                 ReturnUrl = returnUrl,
                 Username = context?.LoginHint,
                 LoginResolutionPolicy = _loginConfiguration.ResolutionPolicy,
+                RequireConfirmedAccount = _identityOptions.SignIn.RequireConfirmedAccount,
                 ExternalProviders = providers.ToArray()
             };
         }
